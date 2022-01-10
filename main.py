@@ -1,6 +1,6 @@
-from reverso_context import translations, samples
+import reverso_context, free_dictionary_api
 
 
-print(translations('run'))
-for i in samples('go'):
+print(reverso_context.translations('run'))
+for i in ('go'):
     print(i)

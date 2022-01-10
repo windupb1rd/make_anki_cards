@@ -8,24 +8,29 @@ def translations(query):
     return list(client.get_translations(query))
 
 
-def get_examples(query, quantity=100):
+def get_examples(query, quantity_in_one_step=10):
     list_of_results = []
 
-    def samples(word):  # итератор, выдает по одному значению через вызов из функции next
-        all_examples = client.get_translation_samples(word, cleanup=True)
+    def download_examples_one_by_one(entered_word):  # итератор, выдает по одному значению через вызов из функции next
+        all_examples = client.get_translation_samples(entered_word, cleanup=True)
         for example in all_examples:
             yield example
 
-    i = samples(query)
-    while quantity > 0:
-        list_of_results.append(next(i))
-        quantity -= 1
-    return list_of_results
+    result = download_examples_one_by_one(query)
+    for j in range(10):
+        quantity = quantity_in_one_step
+        while quantity > 0:
+            list_of_results.append(next(result))
+            quantity -= 1
+        yield list_of_results
+        list_of_results.clear()
 
 
-examples = get_examples('go', quantity=10)
-print(examples[0:2])
-print(examples[2:4])
+examples = get_examples('go', quantity_in_one_step=2)
+print(next(examples))
+print(next(examples))
+print(next(examples))
+print(next(examples))
 print(examples)
 # print(next(examples))
 # print(next(examples))
