@@ -5,13 +5,14 @@ api = 'https://api.dictionaryapi.dev/api/v2/entries/en/'  # add a word to the en
 
 
 def search_a_word(query):
-    result = {}
+    result = []
     response = json.loads(requests.get(api+query).text)
     if type(response) == dict:
         if response['title'] == 'No Definitions Found':
             return False
             # return f"{response['title']}\n{response['message']}"
     else:
+        # result
         return response
 
 
