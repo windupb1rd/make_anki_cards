@@ -6,9 +6,17 @@ def search(query):
     if not main:
         return 'No defenitions found :('
     else:
-        reverso_context.translations(query)
+
+        final_card = {'word': '',
+                      'transcription': '',
+                      'translations': list(reverso_context.translations(query))[:10],
+                      'defenition1': '',
+                      'exampes1': '',
+                      'reverso_examples': '',
+                      }
+
         examples = reverso_context.get_examples(query, quantity_in_one_step=5)
-        return main
+        return final_card
 
 
 print(search(input('Enter query: ')))

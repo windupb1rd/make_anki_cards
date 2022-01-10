@@ -5,7 +5,7 @@ client = Client("en", "ru", credentials=("sheyan44@gmail.com", "DGO8qs9rptO"))
 
 
 def translations(query):
-    return list(client.get_translations(query))[:11]
+    return client.get_translations(query)
 
 
 def get_examples(query, quantity_in_one_step=10):
