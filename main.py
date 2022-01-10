@@ -7,8 +7,8 @@ def search(query):
         return 'No defenitions found :('
     else:
 
-        final_card = {'word': '',
-                      'transcription': '',
+        final_card = {'word': main[0],
+                      'transcription': main[1],
                       'translations': list(reverso_context.translations(query))[:10],
                       'defenition1': '',
                       'exampes1': '',
