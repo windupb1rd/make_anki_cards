@@ -14,10 +14,22 @@ def search_a_word(query: str):
     else:
         result.append(response[0]['word'])  # 0 word
         result.append(response[0]['phonetic'])  # 1 transcription
-        result.append(response[0]['meanings'][0]['definitions'][0]['definition'])  # 2 definition1
-        result.append(response[0]['meanings'][0]['definitions'][0]['example'])  # 3 example for definition1
-        result.append(response[0]['meanings'][0]['definitions'][1]['definition'])  # 4 definition2
-        result.append(response[0]['meanings'][0]['definitions'][1]['example'])  # 5 example for definition2
+        try:
+            result.append(response[0]['meanings'][0]['definitions'][0]['definition'])  # 2 definition1
+        except Exception:
+            result.append('')
+        try:
+            result.append(response[0]['meanings'][0]['definitions'][0]['example'])  # 3 example for definition1
+        except Exception:
+            result.append('')
+        try:
+            result.append(response[0]['meanings'][0]['definitions'][1]['definition'])  # 4 definition2
+        except Exception:
+            result.append('')
+        try:
+            result.append(response[0]['meanings'][0]['definitions'][1]['example'])  # 5 example for definition2
+        except Exception:
+            result.append('')
         return result
 
 

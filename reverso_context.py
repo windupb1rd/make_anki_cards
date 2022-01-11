@@ -1,7 +1,7 @@
 from reverso_context_api import Client
 
 
-client = Client("en", "ru", credentials=("sheyan44@gmail.com", "DGO8qs9rptO"))
+client = Client("en", "ru", credentials=("sheyan44@gmail.com", ""))
 
 
 def translations(query):
