@@ -5,7 +5,11 @@ client = Client("en", "ru", credentials=("sheyan44@gmail.com", "DGO8qs9rptO"))
 
 
 def translations(query):
-    return client.get_translations(query)
+    get_translations = list(client.get_translations(query))
+    if len(get_translations) > 10:
+        return get_translations[:10]
+    else:
+        return get_translations
 
 
 def get_examples(query, quantity_in_one_step=10):
