@@ -5,51 +5,26 @@ api = 'https://api.dictionaryapi.dev/api/v2/entries/en/'  # add a word to the en
 
 
 def search_a_word(query: str):
-    result = []
+    result = {}
     response = json.loads(requests.get(api+query).text)
     if type(response) == dict:
         if response['title'] == 'No Definitions Found':
             return False
-            # return f"{response['title']}\n{response['message']}"
     else:
-        result.append(response[0]['word'])  # 0 word
-        result.append(response[0]['phonetic'])  # 1 transcription
+        result['word'] = response[0]['word']  # 0 word
+        result['transcription'] = response[0]['phonetic']  # 1 transcription
         for i in range(5):
             try:
-                result.append(response[0]['meanings'][0]['definitions'][i]['definition'])  # 2 definition1
+                result[f'definition{i}'] = response[0]['meanings'][0]['definitions'][i]['definition']
             except Exception:
-                result.append(None)
+                result[f'definition{i}'] = None
             try:
-                result.append(response[0]['meanings'][0]['definitions'][i]['example'])  # 3 example for definition1
+                result[f'example{i}'] = response[0]['meanings'][0]['definitions'][i]['example']
             except Exception:
-                result.append(None)
-        # try:
-        #     result.append(response[0]['meanings'][0]['definitions'][1]['definition'])  # 4 definition2
-        # except Exception:
-        #     result.append(None)
-        # try:
-        #     result.append(response[0]['meanings'][0]['definitions'][1]['example'])  # 5 example for definition2
-        # except Exception:
-        #     result.append(None)
-        # try:
-        #     result.append(response[0]['meanings'][0]['definitions'][2]['definition'])  # 6 definition3
-        # except Exception:
-        #     result.append(None)
-        # try:
-        #     result.append(response[0]['meanings'][0]['definitions'][2]['example'])  # 7 example for definition2
-        # except Exception:
-        #     result.append(None)
-        # try:
-        #     result.append(response[0]['meanings'][0]['definitions'][2]['definition'])  # 6 definition3
-        # except Exception:
-        #     result.append(None)
-        # try:
-        #     result.append(response[0]['meanings'][0]['definitions'][2]['example'])  # 7 example for definition2
-        # except Exception:
-        #     result.append(None)
+                result[f'example{i}'] = None
         return result
 
 
-# print(search_a_word(''))
+# print(search_a_word('run'))
 # print(json.loads(requests.get(api+'run').text))
 # print(result[0]['word'], result[0]['phonetic'])
