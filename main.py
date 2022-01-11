@@ -1,4 +1,6 @@
-import reverso_context, free_dictionary_api
+import anki_connect_api
+import reverso_context
+import free_dictionary_api
 
 
 def search_new_word(query):
@@ -32,7 +34,13 @@ def print_to_console(query):
                   if wordcard[f'definition{definition}'] is not None else '', end='')
     print('-' * 30)
     for example in wordcard['reverso_examples']: print(example)
-    return '-'*30
+    print('-' * 30)
+    user_input = input('Добавить катрочку с этим словом в anki?')
+    print(user_input)
+    if user_input == 'y':
+        return anki_connect_api.add_card(wordcard)
+    else:
+        return '-'*30
 
 
 # -----run-----
