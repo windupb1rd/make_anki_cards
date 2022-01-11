@@ -9,7 +9,7 @@ def search_new_word(query):
         examples_from_reverso = reverso_context.get_examples(query, quantity_in_one_step=5)
         wordcard['reverso_examples'] = next(examples_from_reverso)
         wordcard['reverso_translations'] = reverso_context.translations(query)
-        return print_to_console(wordcard)
+        return wordcard
 
 
 def make_cards_from_reverso_favorites():
@@ -21,19 +21,19 @@ def get_examples_from_reverso(query):
     pass
 
 
-def print_to_console(wordcard):
+def print_to_console(query):
+    wordcard: dict = search_new_word(query)
     print(wordcard['word'], wordcard['transcription'], sep='     ')
     print('-' * 30)
     print(wordcard['reverso_translations'])
     print('-' * 30)
-    for defenition in range(5):
-        print(f'{defenition+1}. '+wordcard[f'definition{defenition}'].capitalize()+'\n'\
-                  if wordcard[f'definition{defenition}'] is not None else '', end='')
+    for definition in range(5):
+        print(f'{definition+1}. '+wordcard[f'definition{definition}'].capitalize()+'\n'\
+                  if wordcard[f'definition{definition}'] is not None else '', end='')
     print('-' * 30)
     for example in wordcard['reverso_examples']: print(example)
-    print(wordcard)
     return '-'*30
 
 
 # -----run-----
-print(search_new_word(input('Enter a word: ')))
+print(print_to_console(input('Enter a word: ')))
