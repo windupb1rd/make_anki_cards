@@ -12,7 +12,7 @@ def translations(query):
         return get_translations
 
 
-def get_examples(query, quantity_in_one_step=10):
+def get_examples(query, quantity_in_one_step=5):
     list_of_results = []
 
     def download_examples_one_by_one(entered_word):  # итератор, выдает по одному значению через вызов из функции next
@@ -28,21 +28,6 @@ def get_examples(query, quantity_in_one_step=10):
             quantity -= 1
         yield list_of_results
         list_of_results.clear()
-
-
-# examples = get_examples('go', quantity_in_one_step=5)
-# print(next(examples))
-# print(next(examples))
-# print(next(examples))
-# print(next(examples))
-# print(examples)
-# print(next(examples))
-# print(next(examples))
-
-# print(one_example_at_a_time('run'))
-# suggestions = list(client.get_search_suggestions()
-# print(list(x))
-
 
 
 # for context in client.get_translation_samples("shenanigans", cleanup=True):

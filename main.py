@@ -1,5 +1,5 @@
 import anki_connect_api
-import reverso_context
+import reverso_api
 import free_dictionary_api
 
 
@@ -8,9 +8,9 @@ def search_new_word(query):
     if not wordcard:
         return 'No defenitions found :('
     else:
-        examples_from_reverso = reverso_context.get_examples(query, quantity_in_one_step=5)
+        examples_from_reverso = reverso_api.get_examples(query, quantity_in_one_step=5)
         wordcard['reverso_examples'] = next(examples_from_reverso)
-        wordcard['reverso_translations'] = reverso_context.translations(query)
+        wordcard['reverso_translations'] = reverso_api.translations(query)
         return wordcard
 
 
@@ -19,7 +19,7 @@ def make_cards_from_reverso_favorites():
 
 
 def get_examples_from_reverso(query):
-    reverso_context.get_examples(query, quantity_in_one_step=10)
+    reverso_api.get_examples(query, quantity_in_one_step=10)
     pass
 
 
@@ -45,3 +45,4 @@ def print_to_console(query):
 
 # -----run-----
 print(print_to_console(input('Enter a word: ')))
+
