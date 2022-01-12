@@ -33,6 +33,13 @@ def download_audio(link_to_mp3, filename):
 
 
 def add_card(wordcard):
+
+    def unpack_tuples_of_context_examples(list_of_tuples, word):
+        examples_unpacked = []
+        for tup in list_of_tuples:
+            examples_unpacked.append(' // '.join(list(tup)).replace(word, f'<b>{word}</b>'))
+        return examples_unpacked
+
     if 'my_deck' not in invoke('deckNames'):
         config_id_from_other_deck = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
         invoke('createDeck', deck='my_deck')
@@ -45,13 +52,7 @@ def add_card(wordcard):
                 "Transcription": f"[{wordcard['transcription']}]",
                 "Translation": f"{', '.join(wordcard['reverso_translations'])}",
                 "Definition": f"{'<br>'.join(wordcard['all_definitions'])}",
-                "Context": f"{'<br>'.join(wordcard['reverso_examples'])}",
+                "Context": f"{'<br>'.join(unpack_tuples_of_context_examples(wordcard['reverso_examples'], wordcard['word']))}",
                 "Audio": f"{download_audio(wordcard['audio'], wordcard['word'])}",
             }})
     return 'DONE'
-
-
-# print(invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id'])
-# /home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media
-# invoke('createDeck', deck='test1')
-# print(f"list of decks: {invoke('deckNames')}")  # get names of the existing decks

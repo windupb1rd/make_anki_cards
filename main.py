@@ -41,13 +41,3 @@ def print_to_console(query):
 
 # -----run-----
 print(print_to_console(input('Enter a word: ')))
-# x = search_new_word('run')
-# print(x)
-# t = x['reverso_translations']
-# j = ', '.join(t)
-# d = [x]
-# print(j)
-
-# for definition in range(5):
-#     print(f'{definition + 1}. ' + wordcard[f'definition{definition}'].capitalize() + '\n' \
-#               if wordcard[f'definition{definition}'] is not None else '', end='')

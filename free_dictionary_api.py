@@ -30,8 +30,3 @@ def search_a_word(query: str):
                 result[f'example{i}'] = None
             result['all_definitions'] = all_definitions
         return result
-
-
-# print(search_a_word('run'))
-# print(json.loads(requests.get(api+'run').text))
-# print(search_a_word('run'))

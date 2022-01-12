@@ -15,7 +15,7 @@ def translations(query):
 def get_examples(query, quantity_in_one_step=5):
     list_of_results = []
 
-    def download_examples_one_by_one(entered_word):  # итератор, выдает по одному значению через вызов из функции next
+    def download_examples_one_by_one(entered_word):
         all_examples = client.get_translation_samples(entered_word, cleanup=True)
         for example in all_examples:
             yield example
