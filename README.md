@@ -1,7 +1,7 @@
 # Card Maker for Anki
 In the base of this module are [**anki-connect**](https://github.com/FooSoft/anki-connect) 
 and [**reverso_context_api**](https://github.com/flagist0/reverso_context_api) modules. As its core functionality,
-Card Maker searches an english word on https://dictionaryapi.dev/ then gets the word's data
+Anki Card Maker searches an english word on https://dictionaryapi.dev/ then gets the word's data
 (translation, transcription, several definitions, link to an audio file with pronunciation sample). Translations
 and usage examples are taken from https://context.reverso.net/translation/. 
 After that the new word can be automatically added to your Anki.
@@ -15,7 +15,7 @@ Then install the [**anki-connect**](https://github.com/FooSoft/anki-connect) add
 >2.  Input [2055492159](https://ankiweb.net/shared/info/2055492159) into the text box labeled `Code` and press the `OK` button to proceed.
 >3.  Restart Anki when prompted to do so in order to complete the installation of Anki-Connect.
 
-Install requirements from the file:  
+Create a **venv** and then install requirements from the file:   
 >pip install -r requirements.txt
 
 ## How to use 
@@ -24,6 +24,8 @@ such as the language of translations and context examples, number of definitions
 In order to set these options, edit `config.py` file.  
 #####
 Run `start.bat` or `start.sh` depending on your operation system to start the program. 
+The scripts contain instructions for activating venv before executing `main.py`,
+so it is presumed that you have created a virtual environment and installed required packets into it.
 It will be opened in terminal.
 You can use the program as it is, a learner's dictionary/agregator, which may prove useful, 
 since the program combines the best traits of two sources 
