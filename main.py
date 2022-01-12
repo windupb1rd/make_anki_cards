@@ -32,9 +32,12 @@ def print_to_console(query):
     print('-' * 30)
     user_input = input('Do you want to add a card with this word to Anki? y/n ')
     if user_input == 'y':
-        return anki_connect_api.add_card(wordcard)
+        try:
+            return anki_connect_api.add_card(wordcard)
+        except 'urllib.error.URLError':
+            return 'Anki is not running. Start Anki and restart the program'
     else:
-        return '-'*30
+        return run('run')
 
 
 def run(inp):

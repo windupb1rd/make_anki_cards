@@ -14,7 +14,10 @@ def search_a_word(query: str):
             return False
     else:
         result['word'] = response[0]['word']  # 0 word
-        result['transcription'] = response[0]['phonetic']  # 1 transcription
+        try:
+            result['transcription'] = response[0]['phonetic']  # 1 transcription
+        except Exception:
+            result['transcription'] = ''
         try:
             result['audio'] = response[0]['phonetics'][0]['audio'].replace('//ssl.', 'http://')
         except Exception:
