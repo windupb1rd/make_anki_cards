@@ -31,13 +31,18 @@ def print_to_console(query):
     print('-' * 30)
     for example in wordcard['reverso_examples']: print(example)
     print('-' * 30)
-    user_input = input('Добавить катрочку с этим словом в anki?')
-    print(user_input)
+    user_input = input('Do you want to add a card with this word to Anki? y/n ')
     if user_input == 'y':
         return anki_connect_api.add_card(wordcard)
     else:
         return '-'*30
 
 
+def run(inp):
+    inp = input('Enter a word: ')
+    while inp != 'exit':
+        print(print_to_console(inp))
+        return run('run')
+
 # -----run-----
-print(print_to_console(input('Enter a word: ')))
+run('run')

@@ -33,19 +33,20 @@ def download_audio(link_to_mp3, filename):
 
 
 def add_card(wordcard):
+    deck_to_add = 'my_deck'
 
     def unpack_tuples_of_context_examples(list_of_tuples, word):
         examples_unpacked = []
         for tup in list_of_tuples:
-            examples_unpacked.append(' // '.join(list(tup)).replace(word, f'<b>{word}</b>'))
+            examples_unpacked.append(' // '.join(list(tup)).replace(word, f'<b>{word}</b>')+'<br>')
         return examples_unpacked
 
-    if 'my_deck' not in invoke('deckNames'):
+    if deck_to_add not in invoke('deckNames'):
         config_id_from_other_deck = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
-        invoke('createDeck', deck='my_deck')
-        invoke('setDeckConfigId', decks=["my_deck"], configId=config_id_from_other_deck)
+        invoke('createDeck', deck=deck_to_add)
+        invoke('setDeckConfigId', decks=[deck_to_add], configId=config_id_from_other_deck)
     invoke('addNote', note={
-            "deckName": "my_deck",
+            "deckName": deck_to_add,
             "modelName": "my_note_type",
             "fields": {
                 "Term": f"{wordcard['word']}",
@@ -55,4 +56,4 @@ def add_card(wordcard):
                 "Context": f"{'<br>'.join(unpack_tuples_of_context_examples(wordcard['reverso_examples'], wordcard['word']))}",
                 "Audio": f"{download_audio(wordcard['audio'], wordcard['word'])}",
             }})
-    return 'DONE'
+    return f'The new card "{wordcard["word"]}" has been added to your deck "{deck_to_add}".'
