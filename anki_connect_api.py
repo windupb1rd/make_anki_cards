@@ -33,22 +33,23 @@ def download_audio(link_to_mp3, filename):
 
 
 def add_card(wordcard):
-    if 'TEST' not in invoke('deckNames'):
+    if 'my_deck' not in invoke('deckNames'):
         config_id_from_other_deck = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
-        invoke('createDeck', deck='TEST')
-        invoke('setDeckConfigId', decks=["TEST"], configId=config_id_from_other_deck)
+        invoke('createDeck', deck='my_deck')
+        invoke('setDeckConfigId', decks=["my_deck"], configId=config_id_from_other_deck)
     invoke('addNote', note={
-            "deckName": "TEST",
+            "deckName": "my_deck",
             "modelName": "my_note_type",
             "fields": {
                 "Term": f"{wordcard['word']}",
                 "Transcription": f"[{wordcard['transcription']}]",
-                "Translation": f"{(wordcard['reverso_translations'])}",
-                "Definition": f"{wordcard['all_definitions']}",
-                "Context": f"{wordcard['reverso_examples']}",
+                "Translation": f"{', '.join(wordcard['reverso_translations'])}",
+                "Definition": f"{'<br>'.join(wordcard['all_definitions'])}",
+                "Context": f"{'<br>'.join(wordcard['reverso_examples'])}",
                 "Audio": f"{download_audio(wordcard['audio'], wordcard['word'])}",
             }})
     return 'DONE'
+
 
 # print(invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id'])
 # /home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media

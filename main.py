@@ -6,9 +6,9 @@ import free_dictionary_api
 def search_new_word(query):
     wordcard = free_dictionary_api.search_a_word(query)
     if not wordcard:
-        return 'No defenitions found :('
+        return False
     else:
-        examples_from_reverso = reverso_api.get_examples(query, quantity_in_one_step=5)
+        examples_from_reverso = reverso_api.get_examples(query, quantity_in_one_step=10)
         wordcard['reverso_examples'] = next(examples_from_reverso)
         wordcard['reverso_translations'] = reverso_api.translations(query)
         return wordcard
@@ -20,13 +20,14 @@ def make_cards_from_reverso_favorites():
 
 def print_to_console(query):
     wordcard: dict = search_new_word(query)
-    print(wordcard['word'], wordcard['transcription'], sep='     ')
+    try:
+        print(wordcard['word'], wordcard['transcription'], sep='     ')
+    except TypeError:
+        return 'No definitions found'
     print('-' * 30)
     print(wordcard['reverso_translations'])
     print('-' * 30)
-    for definition in range(5):
-        print(f'{definition+1}. '+wordcard[f'definition{definition}'].capitalize()+'\n'\
-                  if wordcard[f'definition{definition}'] is not None else '', end='')
+    for definition in wordcard['all_definitions']: print(definition)
     print('-' * 30)
     for example in wordcard['reverso_examples']: print(example)
     print('-' * 30)
@@ -40,4 +41,13 @@ def print_to_console(query):
 
 # -----run-----
 print(print_to_console(input('Enter a word: ')))
+# x = search_new_word('run')
+# print(x)
+# t = x['reverso_translations']
+# j = ', '.join(t)
+# d = [x]
+# print(j)
 
+# for definition in range(5):
+#     print(f'{definition + 1}. ' + wordcard[f'definition{definition}'].capitalize() + '\n' \
+#               if wordcard[f'definition{definition}'] is not None else '', end='')
