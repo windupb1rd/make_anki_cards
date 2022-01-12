@@ -34,4 +34,4 @@ def search_a_word(query: str):
 
 # print(search_a_word('run'))
 # print(json.loads(requests.get(api+'run').text))
-print(search_a_word('run'))
+# print(search_a_word('run'))

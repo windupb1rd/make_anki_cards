@@ -5,7 +5,7 @@ import os
 
 
 # код из документации к аддону для приложения anki. Аддон открывает порт на локалхосте для взаимодействия с приложением
-# https://foosoft.net/projects/anki-connect/
+# https://foosoft.net/projects/anki-connect/     документация
 def request(action, **params):
     return {'action': action, 'params': params, 'version': 6}
 
@@ -22,12 +22,11 @@ def invoke(action, **params):
     if response['error'] is not None:
         raise Exception(response['error'])
     return response['result']
-# ----------
+# ------------------------------------------------------
 
 
 # invoke('createDeck', deck='test1')
-# result = invoke('deckNames')
-# print('got list of decks: {}'.format(result))
+# print(f"list of decks: {invoke('deckNames')}")  # get names of the existing decks
 
 
 def download_audio(link_to_mp3, filename):
@@ -37,9 +36,11 @@ def download_audio(link_to_mp3, filename):
     return '[sound:'+filename+'.mp3]'
 
 
-def add_card(wordcard):  # поля предварительно создаются в шаблоне карточек в anki
+def add_card(wordcard):
     if 'TEST' not in invoke('deckNames'):
+        config_id_from_other_deck = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
         invoke('createDeck', deck='TEST')
+        invoke('setDeckConfigId', decks=["TEST"], configId=config_id_from_other_deck)
     invoke('addNote', note={
             "deckName": "TEST",
             "modelName": "my_note_type",
@@ -49,8 +50,9 @@ def add_card(wordcard):  # поля предварительно создают�
                 "Translation": f"{(wordcard['reverso_translations'])}",
                 "Definition": f"{wordcard['all_definitions']}",
                 "Context": f"{wordcard['reverso_examples']}",
-                "Audio": f"{download_audio(wordcard['audio'], wordcard['word'])}",  # звук пока не работает, так как аудио должны заранее находиться в папке с медиа. Но кнопка появляется
-    }})
+                "Audio": f"{download_audio(wordcard['audio'], wordcard['word'])}",
+            }})
     return 'DONE'
 
+print(invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id'])
 # /home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media
