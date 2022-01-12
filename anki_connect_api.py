@@ -25,10 +25,6 @@ def invoke(action, **params):
 # ------------------------------------------------------
 
 
-# invoke('createDeck', deck='test1')
-# print(f"list of decks: {invoke('deckNames')}")  # get names of the existing decks
-
-
 def download_audio(link_to_mp3, filename):
     media_folder = '/home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media'
     link = requests.get(link_to_mp3)
@@ -54,5 +50,7 @@ def add_card(wordcard):
             }})
     return 'DONE'
 
-print(invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id'])
+# print(invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id'])
 # /home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media
+# invoke('createDeck', deck='test1')
+# print(f"list of decks: {invoke('deckNames')}")  # get names of the existing decks

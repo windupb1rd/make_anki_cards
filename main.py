@@ -18,11 +18,6 @@ def make_cards_from_reverso_favorites():
     pass
 
 
-def get_examples_from_reverso(query):
-    reverso_api.get_examples(query, quantity_in_one_step=10)
-    pass
-
-
 def print_to_console(query):
     wordcard: dict = search_new_word(query)
     print(wordcard['word'], wordcard['transcription'], sep='     ')
@@ -46,9 +41,3 @@ def print_to_console(query):
 # -----run-----
 print(print_to_console(input('Enter a word: ')))
 
-
-
-"""доделать:
-- при создании колоды автоматически применять заранее созданное кастомное расписание
-- 
-"""
