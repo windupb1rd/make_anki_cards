@@ -23,7 +23,7 @@ To begin with, it's worth mentioning that you can change some basic settings,
 such as the language of translations and context examples, number of definitions and examples to be shown. 
 In order to set these options, edit `config.py` file.  
 #####
-To start the program run `start.bat` or `start.sh` depending on your operation system. 
+Run `start.bat` or `start.sh` depending on your operation system to start the program. 
 It will be opened in terminal.
 You can use the program as it is, a learner's dictionary/agregator, which may prove useful, 
 since the program combines the best traits of two sources 
@@ -52,7 +52,7 @@ Your decks won't be affected in any way, and you won't lose or ruin you data.
 There's also a variable to apply existing schedule settings from your own deck in `config.py`.
 
 ##### ----------
-This program was written for personal use. There is no any warranty or responsibility 
+This program was written for personal use. There is no any warranty or responsibility. 
 If you have any thoughts or suggestions on Anki Card Maker, please feel free to contact me.  
 `sheyan44@gmail.com`
 
