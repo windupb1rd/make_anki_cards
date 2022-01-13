@@ -51,7 +51,7 @@ a non-existing name to `config.py` and let the program initialize a new deck wit
 Your decks won't be affected in any way, and you won't lose or ruin you data.
 There's also a variable to apply existing schedule settings from your own deck in `config.py`.
 
-#####-------------
+##### ----------
 This program was written for personal use. There is no any warranty or responsibility 
 If you have any thoughts or suggestions on Anki Card Maker, please feel free to contact me.  
 `sheyan44@gmail.com`
