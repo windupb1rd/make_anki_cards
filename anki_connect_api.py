@@ -2,6 +2,7 @@ import json
 import urllib.request
 import requests
 import os
+import card_style_and_deck_config
 
 
 # https://foosoft.net/projects/anki-connect/
@@ -32,7 +33,7 @@ def download_audio(link_to_mp3, filename):
 
 
 def add_card(wordcard):
-    deck_to_add = 'my_deck'
+    deck_to_add = 'my_new_test_deck'
 
     def unpack_tuples_of_context_examples(list_of_tuples, word):
         examples_unpacked = []
@@ -43,13 +44,28 @@ def add_card(wordcard):
             examples_unpacked.append(' // '.join(example_and_translation).replace(word, f'<b>{word}</b>')+'<br>')
         return examples_unpacked
 
-    if deck_to_add not in invoke('deckNames'):
-        config_id_from_other_deck = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
+    def create_model_and_deck(deck_to_add):
+        # config_id_from_other_deck = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
         invoke('createDeck', deck=deck_to_add)
-        invoke('setDeckConfigId', decks=[deck_to_add], configId=config_id_from_other_deck)
+        invoke('saveDeckConfig', config=card_style_and_deck_config.deck_conf)
+        invoke('setDeckConfigId', decks=[deck_to_add], configId='1641449709710')
+        try:
+            invoke('modelTemplates', modelName='myCardType')
+        except Exception:
+            invoke('createModel', modelName="myCardType",
+                   inOrderFields=["Term", "Transcription", "Translation", "Definition", "Context", "Audio"],
+                   css=card_style_and_deck_config.style, cardTemplates=[{
+                    "Name": "myCardType",
+                    "Front": card_style_and_deck_config.front,
+                    "Back": card_style_and_deck_config.back
+                }])
+
+    if deck_to_add not in invoke('deckNames'):
+        create_model_and_deck(deck_to_add)
+
     invoke('addNote', note={
             "deckName": deck_to_add,
-            "modelName": "my_note_type",
+            "modelName": "myCardType",
             "fields": {
                 "Term": f"{wordcard['word']}",
                 "Transcription": f"[{wordcard['transcription']}]",
@@ -59,3 +75,6 @@ def add_card(wordcard):
                 "Audio": f"{download_audio(wordcard['audio'], wordcard['word'])}",
             }})
     return f'The new card "{wordcard["word"]}" has been added to your deck "{deck_to_add}".'
+
+
+# print(invoke('getDeckConfig', deck="400 Must - have words for the TOEFL"))
