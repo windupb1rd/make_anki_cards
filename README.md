@@ -45,7 +45,12 @@ If you want to use your existing decks, make sure they have the required fields 
 5. Context
 6. Audio
 
-To apply exising schedule settings from your 
+The absence of any of the fields will cause an error. Therefore, if you want a custom deck name, 
+I advise you not to enter your own decks names, but enter
+a non-existing name to `config.py` and let the program initialize a new deck with given name.
+Your decks won't be affected in any way, and you won't lose or ruin you data.
+There's also a variable to apply existing schedule settings from your own deck in `config.py`.
+
 #####-------------
 This program was written for personal use. There is no any warranty or responsibility 
 If you have any thoughts or suggestions on Anki Card Maker, please feel free to contact me.  

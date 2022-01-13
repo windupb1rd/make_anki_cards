@@ -36,7 +36,30 @@ def download_audio(link_to_mp3, filename):
 
 
 def add_card(wordcard):
-    deck_to_add = config.deck_name
+
+    def create_or_use_deck(deck_to_add):
+        if deck_to_add in invoke('deckNames'):
+            return deck_to_add
+        else:
+            invoke('createDeck', deck=deck_to_add)
+            try:
+                invoke('modelTemplates', modelName='AnkiCardMakerType')
+            except Exception:
+                invoke('createModel', modelName="AnkiCardMakerType",
+                           inOrderFields=["Term", "Transcription", "Translation", "Definition", "Context", "Audio"],
+                           css=card_style_and_deck_config.style, cardTemplates=[{
+                            "Name": "AnkiCardMakerType",
+                            "Front": card_style_and_deck_config.front,
+                            "Back": card_style_and_deck_config.back
+                        }])
+            if config.deck_to_copy_schedule_settings_from is None:
+                deck_id = invoke('saveDeckConfig', config=card_style_and_deck_config.deck_conf)  # AnkiCardMakerSchedule
+                invoke('setDeckConfigId', decks=[deck_to_add], configId=1641449709710)
+            else:
+                deck_id = invoke('getDeckConfig', deck=config.deck_to_copy_schedule_settings_from)['id']
+                invoke('setDeckConfigId', decks=[deck_to_add], configId=deck_id)
+            return deck_to_add
+
 
     def unpack_tuples_of_context_examples(list_of_tuples, word):
         examples_unpacked = []
@@ -47,31 +70,9 @@ def add_card(wordcard):
             examples_unpacked.append(' // '.join(example_and_translation).replace(word, f'<b>{word}</b>')+'<br>')
         return examples_unpacked
 
-    def create_model_and_deck(deck_to_add):
-        if config.deck_to_copy_schedule_settings_from != 'none':
-            config_id = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
-        else:
-            config_id = '1641449709710'
-        invoke('createDeck', deck=deck_to_add)
-        invoke('saveDeckConfig', config=card_style_and_deck_config.deck_conf)
-        invoke('setDeckConfigId', decks=[deck_to_add], configId=config_id)
-        try:
-            invoke('modelTemplates', modelName='myCardType')
-        except Exception:
-            invoke('createModel', modelName="myCardType",
-                   inOrderFields=["Term", "Transcription", "Translation", "Definition", "Context", "Audio"],
-                   css=card_style_and_deck_config.style, cardTemplates=[{
-                    "Name": "myCardType",
-                    "Front": card_style_and_deck_config.front,
-                    "Back": card_style_and_deck_config.back
-                }])
-
-    if deck_to_add not in invoke('deckNames'):
-        create_model_and_deck(deck_to_add)
-
     invoke('addNote', note={
-            "deckName": deck_to_add,
-            "modelName": "myCardType",
+            "deckName": create_or_use_deck(config.deck_name),
+            "modelName": config.deck_type,
             "fields": {
                 "Term": f"{wordcard['word']}",
                 "Transcription": f"[{wordcard['transcription']}]",
@@ -80,7 +81,4 @@ def add_card(wordcard):
                 "Context": f"{'<br>'.join(unpack_tuples_of_context_examples(wordcard['reverso_examples'], wordcard['word']))}",
                 "Audio": f"{download_audio(wordcard['audio'], wordcard['word'])}",
             }})
-    return f'The new card "{wordcard["word"]}" has been added to your deck "{deck_to_add}".'
-
-
-# print(invoke('getDeckConfig', deck="400 Must - have words for the TOEFL"))
+    return f'The new card "{wordcard["word"]}" has been added to your deck "{config.deck_name}".'
