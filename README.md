@@ -30,8 +30,8 @@ since the program combines the best traits of two sources
 (although Reverso Context is a very powerful tool, it still lacks transcriptions and dictionary definitions,
 in my humble opinion).
 #####
-After the search is done you will be asked if you prefer add a card with the word to your Anki. 
-**Anki must be started by the moment**.
+After the search is done you will be asked if you prefer to add a card with the word to your Anki. 
+**Anki must be already running by the moment**.
 The program will create a new deck with all the needed card fields and styling.
 You don't have to do anything in Anki beforehand, however, you may if needed.
 ## Customization
