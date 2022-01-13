@@ -38,7 +38,10 @@ def add_card(wordcard):
     def unpack_tuples_of_context_examples(list_of_tuples, word):
         examples_unpacked = []
         for tup in list_of_tuples:
-            examples_unpacked.append(' // '.join(list(tup)).replace(word, f'<b>{word}</b>')+'<br>')
+            example_and_translation = list(tup)
+            make_translation_cursive = '<i>'+example_and_translation.pop(1)+'</i>'
+            example_and_translation.append(make_translation_cursive)
+            examples_unpacked.append(' // '.join(example_and_translation).replace(word, f'<b>{word}</b>')+'<br>')
         return examples_unpacked
 
     if deck_to_add not in invoke('deckNames'):
