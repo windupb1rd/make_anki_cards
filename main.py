@@ -34,17 +34,20 @@ def print_to_console(query):
     if user_input == 'y':
         try:
             return anki_connect_api.add_card(wordcard)
-        except 'urllib.error.URLError':
-            return 'Anki is not running. Start Anki and restart the program'
+        except Exception:
+            return run('Anki is not running. Start Anki and restart the program')
     else:
-        return run('run')
+        return run('__run__')
 
 
 def run(inp):
+    if inp != '__run__':
+        print(inp)
     inp = input('Enter a word: ')
     while inp != 'exit':
         print(print_to_console(inp))
-        return run('run')
+        return run('__run__')
+
 
 # -----run-----
-run('run')
+run('__run__')
