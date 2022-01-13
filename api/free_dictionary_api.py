@@ -1,5 +1,6 @@
 import requests, json
 
+import config
 
 api = 'https://api.dictionaryapi.dev/api/v2/entries/en/'  # add a word to the end of the link
 
@@ -18,7 +19,7 @@ def search_a_word(query: str):
             result['audio'] = response[0]['phonetics'][0]['audio'].replace('//ssl.', 'http://')
         except Exception:
             result['audio'] = ''
-        for i in range(5):
+        for i in range(config.maximum_number_of_definitions_in_a_card):
             try:
                 result[f'definition{i}'] = response[0]['meanings'][0]['definitions'][i]['definition']
                 all_definitions.append((f"{i+1}. "+response[0]['meanings'][0]['definitions'][i]['definition']))

@@ -100,7 +100,7 @@ h1.one span {
 
 deck_conf = {'id': 1641449709710,
  'mod': 1641974383, 
- 'name': 'myAutoDeckSchedule', 
+ 'name': 'AnkiCardMakerSchedule',
  'usn': 46, 
  'maxTaken': 60, 
  'autoplay': True, 'timer': 0, 

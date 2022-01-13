@@ -3,7 +3,8 @@ In the base of this module are [**anki-connect**](https://github.com/FooSoft/ank
 and [**reverso_context_api**](https://github.com/flagist0/reverso_context_api) modules. As its core functionality,
 Card Maker searches an english word on https://dictionaryapi.dev/ then gets the word's data
 (translation, transcription, several definitions, link to an audio file with pronunciation sample). Translations
-and usage examples are taken from https://context.reverso.net/translation/.  
+and usage examples are taken from https://context.reverso.net/translation/. 
+After that the new word can be automatically added to your Anki.
   
 ## Installation
 First of all, you'll need the desktop version of Anki installed on your computer. 
@@ -18,5 +19,36 @@ Install requirements from the file:
 >pip install -r requirements.txt
 
 ## How to use 
-to be contunued...
+To begin with, it's worth mentioning that you can change some basic settings, 
+such as the language of translations and context examples, number of definitions and examples to be shown. 
+In order to set these options, edit `config.py` file.  
+#####
+To start the program run `start.bat` or `start.sh` depending on your operation system. 
+It will be opened in terminal.
+You can use the program as it is, a learner's dictionary/agregator, which may prove useful, 
+since the program combines the best traits of two sources 
+(although Reverso Context is a very powerful tool, it still lacks transcriptions and dictionary definitions,
+in my humble opinion).
+#####
+After the search is done you will be asked if you prefer add a card with the word to your Anki. 
+**Anki must be started by the moment**.
+The program will create a new deck with all the needed card fields and styling.
+You don't have to do anything in Anki beforehand, however, you may if needed.
+## Customization
+You are free to edit several deck settings in `config.py`.  
+  
+If you want to use your existing decks, make sure they have the required fields in the order given:
+1. Term
+2. Transcription
+3. Translation
+4. Definition
+5. Context
+6. Audio
+
+To apply exising schedule settings from your 
+#####-------------
+This program was written for personal use. There is no any warranty or responsibility 
+If you have any thoughts or suggestions on Anki Card Maker, please feel free to contact me.  
+`sheyan44@gmail.com`
+
 

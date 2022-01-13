@@ -6,6 +6,9 @@ import card_style_and_deck_config
 
 
 # https://foosoft.net/projects/anki-connect/
+import config
+
+
 def request(action, **params):
     return {'action': action, 'params': params, 'version': 6}
 
@@ -33,7 +36,7 @@ def download_audio(link_to_mp3, filename):
 
 
 def add_card(wordcard):
-    deck_to_add = 'my_new_test_deck'
+    deck_to_add = config.deck_name
 
     def unpack_tuples_of_context_examples(list_of_tuples, word):
         examples_unpacked = []
@@ -45,10 +48,13 @@ def add_card(wordcard):
         return examples_unpacked
 
     def create_model_and_deck(deck_to_add):
-        # config_id_from_other_deck = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
+        if config.deck_to_copy_schedule_settings_from != 'none':
+            config_id = invoke('getDeckConfig', deck="400 Must - have words for the TOEFL")['id']
+        else:
+            config_id = '1641449709710'
         invoke('createDeck', deck=deck_to_add)
         invoke('saveDeckConfig', config=card_style_and_deck_config.deck_conf)
-        invoke('setDeckConfigId', decks=[deck_to_add], configId='1641449709710')
+        invoke('setDeckConfigId', decks=[deck_to_add], configId=config_id)
         try:
             invoke('modelTemplates', modelName='myCardType')
         except Exception:
