@@ -21,7 +21,7 @@ def search_a_word(query: str):
         for i in range(5):
             try:
                 result[f'definition{i}'] = response[0]['meanings'][0]['definitions'][i]['definition']
-                all_definitions.append((f"{i+1}. "+response[0]['meanings'][0]['definitions'][i]['definition']).capitalize())
+                all_definitions.append((f"{i+1}. "+response[0]['meanings'][0]['definitions'][i]['definition']))
             except Exception:
                 result[f'definition{i}'] = None
             try:

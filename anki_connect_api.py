@@ -4,8 +4,7 @@ import requests
 import os
 
 
-# код из документации к аддону для приложения anki. Аддон открывает порт на локалхосте для взаимодействия с приложением
-# https://foosoft.net/projects/anki-connect/     документация
+# https://foosoft.net/projects/anki-connect/
 def request(action, **params):
     return {'action': action, 'params': params, 'version': 6}
 
