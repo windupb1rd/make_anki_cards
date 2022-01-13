@@ -1,5 +1,5 @@
 # Card Maker for Anki
-In the base of this module are [**anki-connect**](https://github.com/FooSoft/anki-connect) 
+In the base of this program are [**anki-connect**](https://github.com/FooSoft/anki-connect) 
 and [**reverso_context_api**](https://github.com/flagist0/reverso_context_api) modules. As its core functionality,
 Anki Card Maker searches an english word on https://dictionaryapi.dev/ then gets the word's data
 (translation, transcription, several definitions, link to an audio file with pronunciation sample). Translations
