@@ -26,6 +26,95 @@ style = """.card {
 }
 
 #term {
+	font-family: Segoe UI, sans-serif;
+	font-size: 28px;
+	font-weight: bold;
+	text-align: center;
+	color: Lavender;
+	background: DarkSlateGrey;
+}
+
+#transcription {
+	font-family: helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: azure;
+	background: DarkSlateGrey;
+}
+
+#translation {
+	font-family: verdana, sans-serif;
+	font-size: 18px;
+	text-align: left;
+	color: Lavender;
+	background: DarkSlateGrey;
+}
+
+#definition {
+	font-family: verdana, sans-serif;
+	font-size: 18px;
+	margin-top: 12px;
+	background: DarkSlateGrey;
+	color: Lavender;
+}
+
+#context {
+	font-family: Lucida Console, sans-serif;
+	font-size: 18px;
+	font-style: ;
+	padding: ;
+	margin-bottom: 0px;
+	border-radius: 6px;
+	line-height: 120%;
+	position: absolute;
+	color: Lavender;
+	background: DarkSlateGrey;
+}
+
+h1 {
+	position: relative;
+	margin-bottom: 10px;
+	margin-top: 16px;
+	color: #839496; 
+}
+
+h1.one {
+	font-size: 14px;
+}
+
+h1.one:before {
+	content: "";
+	display: block;
+	color: #999;
+	border-top: solid 1px #93a1a1;
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	top: 50%;
+	z-index: 1; 
+}
+
+h1.one span {
+	background: SlateGrey;
+	color: lavender;
+	padding: 0 20px;
+	position: relative;
+	z-index: 5;
+}
+
+.extra {
+	font-size: 16px;
+}"""
+
+
+style1 = """.card {
+ 	font-family: Segoe UI;
+ 	font-size: 22px;
+ 	text-align: left;
+ 	color: black;
+}
+
+#term {
 	font-family: Segoe UI;
 	font-size: 28px;
 	font-weight: bold;
