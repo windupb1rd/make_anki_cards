@@ -34,8 +34,8 @@ def print_to_console(query):
     if user_input == 'y':
         try:
             return anki_connect_api.add_card(wordcard)
-        except Exception:
-            return run('Anki is not running. Start Anki and restart the program')
+        except Exception as error:
+            return run(str(error).capitalize())
     else:
         return run('__run__')
 
