@@ -23,6 +23,7 @@ style = """.card {
  	font-size: 22px;
  	text-align: left;
  	color: black;
+	background: DarkSlateGrey;
 }
 
 #term {
@@ -31,7 +32,7 @@ style = """.card {
 	font-weight: bold;
 	text-align: center;
 	color: Lavender;
-	background: DarkSlateGrey;
+	background: 	#264040;
 }
 
 #transcription {
@@ -47,14 +48,14 @@ style = """.card {
 	font-size: 18px;
 	text-align: left;
 	color: Lavender;
-	background: DarkSlateGrey;
+	background: #264040;
 }
 
 #definition {
 	font-family: verdana, sans-serif;
 	font-size: 18px;
 	margin-top: 12px;
-	background: DarkSlateGrey;
+	background: #264040;
 	color: Lavender;
 }
 
@@ -68,7 +69,6 @@ style = """.card {
 	line-height: 120%;
 	position: absolute;
 	color: Lavender;
-	background: DarkSlateGrey;
 }
 
 h1 {
