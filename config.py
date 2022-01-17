@@ -14,4 +14,5 @@ deck_to_copy_schedule_settings_from = None
 # type of cards, fielsd,stypes. List of present types can be found in Anki
 deck_type = 'AnkiCardMakerType'
 
-
+# anki media folder
+media_folder = '/home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media'

@@ -29,7 +29,7 @@ def invoke(action, **params):
 
 
 def download_audio(link_to_mp3, filename):
-    media_folder = '/home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media'
+    media_folder = config.media_folder
     link = requests.get(link_to_mp3)
     open(os.path.join(media_folder, filename+'.mp3'), 'wb').write(link.content)
     return '[sound:'+filename+'.mp3]'

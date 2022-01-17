@@ -44,9 +44,11 @@ def run(inp):
     if inp != '__run__':
         print(inp)
     inp = input('Enter a word: ')
-    while inp != 'exit':
+    while inp != 'x/':
         print(print_to_console(inp))
         return run('__run__')
+    else:
+        return 'Goodbye'
 
 
 # -----run-----
