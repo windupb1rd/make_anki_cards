@@ -3,12 +3,15 @@ import requests, json
 import config
 
 api = 'https://api.dictionaryapi.dev/api/v2/entries/en/'  # add a word to the end of the link
-
+headers = {'Host': 'api.dictionaryapi.dev',
+'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0',
+'Accept-Language': 'en-US,en;q=0.5',
+'Connection': 'keep-alive',}
 
 def search_a_word(query: str):
     result = {}
     all_definitions = []
-    response = json.loads(requests.get(api+query).text)
+    response = json.loads(requests.get(api+query, headers=headers, timeout=10).text)
     if type(response) == dict:
         if response['title'] == 'No Definitions Found':
             return False

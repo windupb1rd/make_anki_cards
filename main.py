@@ -37,19 +37,17 @@ def print_to_console(query):
         except Exception as error:
             return run(str(error).capitalize())
     else:
-        return run('__run__')
+        return run('start')
 
 
 def run(inp):
-    if inp != '__run__':
-        print(inp)
     inp = input('Enter a word: ')
     while inp != 'x/':
         print(print_to_console(inp))
-        return run('__run__')
+        return run(inp)
     else:
         return 'Goodbye'
 
 
 # -----run-----
-run('__run__')
+run('start')
