@@ -14,5 +14,6 @@ deck_to_copy_schedule_settings_from = None
 # type of cards, fielsd,stypes. List of present types can be found in Anki
 deck_type = 'AnkiCardMakerType'
 
-# anki media folder
-media_folder = '/home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media'
+# anki media folder. These are two path types for Windows and Linux systems. Just put a # before the one that's not used
+# media_folder = '/home/windupbird/snap/anki-woodrow/35/.local/share/Anki2/Aleksandr/collection.media'
+media_folder = 'C:\\Users\\sheya\\AppData\\Roaming\\Anki2\\User 1\\collection.media'
