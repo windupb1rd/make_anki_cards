@@ -30,9 +30,12 @@ def invoke(action, **params):
 
 def download_audio(link_to_mp3, filename):
     media_folder = config.media_folder
-    link = requests.get(link_to_mp3)
-    open(os.path.join(media_folder, filename+'.mp3'), 'wb').write(link.content)
-    return '[sound:'+filename+'.mp3]'
+    try:
+        link = requests.get(link_to_mp3)
+        open(os.path.join(media_folder, filename+'.mp3'), 'wb').write(link.content)
+        return '[sound:' + filename + '.mp3]'
+    except Exception:
+        return 'no audio for this word'
 
 
 def add_card(wordcard):
